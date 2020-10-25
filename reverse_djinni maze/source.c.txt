@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int getFlag(string m) {
+	cout << "if you choose the shortest way,you win" << endl;
+	cout << "flag is DUTCTF{" << m << "}" << endl;
+	return 0;
+}
+
+int main()
+{
+	string m = "***000000*000*00*000******0*00*000********00*000&";
+	cout << "input password" << endl;
+	string password;
+	cin >> password;
+	int i = 0;
+	int j = 0;
+	while (password[i]) {
+		if (password[i] == 'w') {
+			j = j - 7;
+		}
+		else if (password[i] == 's') {
+			j = j + 7;
+		}
+		else if (password[i] == 'a') {
+			j = j - 1;
+		}
+		else if (password[i] == 'd') {
+			j = j + 1;
+		}
+		else {
+			cout << "invalid!" << endl;
+			exit(0);
+		}
+		if (m[j] == '*') {
+			i = i + 1;
+			continue;
+		}
+		else if (m[j] == '&') {
+			getFlag(password);
+			return 0;
+		}
+		else {
+			cout << "you lose" << endl;
+			exit(0);
+		}
+	}
+
+	return 0;
+}
+
